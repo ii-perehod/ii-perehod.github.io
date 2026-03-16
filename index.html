@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Портфолио — Веб-разработка и Telegram-боты</title>
+<meta name="description" content="Портфолио: сайты, Telegram-боты, интерактивные тренажёры. Разработка под ключ с использованием ИИ.">
+<style>
+  :root {
+    --bg: #0f0c29;
+    --bg2: #1a1640;
+    --accent: #a78bfa;
+    --accent2: #60a5fa;
+    --green: #34d399;
+    --yellow: #fbbf24;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --card: rgba(255,255,255,0.05);
+    --border: rgba(255,255,255,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    min-height: 100vh;
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1.6;
+  }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+
+  /* Hero */
+  .hero {
+    padding: 80px 0 60px;
+    text-align: center;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(167,139,250,0.15);
+    border: 1px solid rgba(167,139,250,0.3);
+    color: var(--accent);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    margin-bottom: 24px;
+    letter-spacing: 0.5px;
+  }
+
+  .hero h1 {
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 700;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero p {
+    font-size: 18px;
+    color: var(--muted);
+    max-width: 560px;
+    margin: 0 auto 40px;
+  }
+
+  .skills-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .skill-tag {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* Section */
+  section { padding: 20px 0 60px; }
+
+  .section-title {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+
+  /* Cards grid */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    transition: transform 0.2s, border-color 0.2s;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(167,139,250,0.3);
+  }
+
+  .card-icon {
+    font-size: 28px;
+    margin-bottom: 14px;
+  }
+
+  .card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #fff;
+  }
+
+  .card p {
+    font-size: 14px;
+    color: var(--muted);
+    flex: 1;
+    margin-bottom: 16px;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tag {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-weight: 500;
+  }
+
+  .tag-purple { background: rgba(167,139,250,0.15); color: var(--accent); }
+  .tag-blue   { background: rgba(96,165,250,0.15);  color: var(--accent2); }
+  .tag-green  { background: rgba(52,211,153,0.15);  color: var(--green); }
+  .tag-yellow { background: rgba(251,191,36,0.15);  color: var(--yellow); }
+
+  /* Wide card */
+  .card-wide {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  @media (max-width: 600px) {
+    .card-wide { grid-template-columns: 1fr; }
+  }
+
+  /* Contact */
+  .contact {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+  }
+
+  .contact h2 {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+
+  .contact p {
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+
+  .contact-links {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .btn:hover { opacity: 0.8; }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #fff;
+  }
+
+  .btn-outline {
+    border: 1px solid var(--border);
+    color: var(--text);
+    background: rgba(255,255,255,0.05);
+  }
+
+  /* Divider */
+  hr { border: none; border-top: 1px solid var(--border); margin: 10px 0; }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 40px 0;
+    color: var(--muted);
+    font-size: 13px;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-badge">Портфолио · 2025–2026</div>
+    <h1>Веб-разработка и автоматизация</h1>
+    <p>Создаю сайты, Telegram-боты и интерактивные тренажёры. Работаю удалённо, использую ИИ как инструмент.</p>
+    <div class="skills-row">
+      <span class="skill-tag">HTML / CSS / JS</span>
+      <span class="skill-tag">Python</span>
+      <span class="skill-tag">Telegram-боты</span>
+      <span class="skill-tag">PWA</span>
+      <span class="skill-tag">Git / GitHub</span>
+      <span class="skill-tag">Vercel / Amvera</span>
+      <span class="skill-tag">Docker</span>
+      <span class="skill-tag">ИИ-инструменты</span>
+    </div>
+  </div>
+
+  <!-- Сайты -->
+  <section>
+    <div class="section-title">Сайты</div>
+    <div class="grid">
+
+      <a class="card" href="https://igor-dark-site.vercel.app" target="_blank" rel="noopener">
+        <div class="card-icon">🎤</div>
+        <h3>Сайт ведущего Игоря Моисеенко</h3>
+        <p>Лендинг для ведущего мероприятий. Тёмный дизайн, мобильная адаптация, форма заявки с отправкой в Telegram, Schema.org, SEO-оптимизация.</p>
+        <div class="card-tags">
+          <span class="tag tag-purple">HTML/CSS</span>
+          <span class="tag tag-blue">Vercel</span>
+          <span class="tag tag-green">SEO</span>
+          <span class="tag tag-yellow">Telegram API</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://ii-perehod.github.io/igor-analysis/" target="_blank" rel="noopener">
+        <div class="card-icon">📊</div>
+        <h3>Маркетинговый анализ</h3>
+        <p>Анализ конкурентов, страхи клиентов, стратегия присутствия онлайн. Интерактивный отчёт с готовыми текстами для площадок.</p>
+        <div class="card-tags">
+          <span class="tag tag-purple">Исследование</span>
+          <span class="tag tag-blue">GitHub Pages</span>
+          <span class="tag tag-green">Контент</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- Тренажёры -->
+  <section>
+    <div class="section-title">Образовательные тренажёры</div>
+    <div class="grid">
+
+      <a class="card" href="https://ii-perehod.github.io/english/" target="_blank" rel="noopener">
+        <div class="card-icon">📚</div>
+        <h3>Тренажёры по английскому</h3>
+        <p>Интерактивные тренажёры по текстам учебника. Режимы: чтение, карточки, диктовка, озвучка. Голосовой ввод, тёмная тема.</p>
+        <div class="card-tags">
+          <span class="tag tag-purple">JavaScript</span>
+          <span class="tag tag-blue">Speech API</span>
+          <span class="tag tag-green">PWA</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://ii-perehod.github.io/english/unit4_quiz.html" target="_blank" rel="noopener">
+        <div class="card-icon">🃏</div>
+        <h3>Квиз по словарю</h3>
+        <p>Карточки для изучения слов с произношением. Группировка по текстам, режим перемешивания, повтор ошибок.</p>
+        <div class="card-tags">
+          <span class="tag tag-purple">JavaScript</span>
+          <span class="tag tag-yellow">Speech Synthesis</span>
+          <span class="tag tag-green">localStorage</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://ii-perehod.github.io/english/generator.html" target="_blank" rel="noopener">
+        <div class="card-icon">⚙️</div>
+        <h3>Генератор тренажёров</h3>
+        <p>Инструмент для создания тренажёров из любого текста. Заполни форму — скачай готовый HTML-файл.</p>
+        <div class="card-tags">
+          <span class="tag tag-purple">JavaScript</span>
+          <span class="tag tag-blue">Code Generation</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- Боты -->
+  <section>
+    <div class="section-title">Telegram-боты</div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-icon">💇</div>
+        <h3>Бот записи к парикмахеру</h3>
+        <p>Онлайн-запись через Telegram. Выбор услуги, даты и времени. Подтверждение, уведомления мастеру. Docker + Amvera.</p>
+        <div class="card-tags">
+          <span class="tag tag-purple">Python</span>
+          <span class="tag tag-blue">python-telegram-bot</span>
+          <span class="tag tag-green">Docker</span>
+          <span class="tag tag-yellow">Amvera</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🎙️</div>
+        <h3>Бот-напоминалка с голосом</h3>
+        <p>Отправь голосовое — бот распознает речь (Vosk, офлайн), создаст задачу и напомнит вовремя. Без API-ключей.</p>
+        <div class="card-tags">
+          <span class="tag tag-purple">Python</span>
+          <span class="tag tag-blue">Vosk / ffmpeg</span>
+          <span class="tag tag-green">Docker</span>
+          <span class="tag tag-yellow">Amvera</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🔍</div>
+        <h3>Бот-скаут новостей</h3>
+        <p>Автоматический мониторинг Telegram-каналов по ключевым словам. GitHub Actions (2 раза в день), результаты в Telegram.</p>
+        <div class="card-tags">
+          <span class="tag tag-purple">Python</span>
+          <span class="tag tag-blue">GitHub Actions</span>
+          <span class="tag tag-green">Парсинг</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Контакт -->
+  <section>
+    <div class="contact">
+      <h2>Готова к проектам</h2>
+      <p>Удалённая работа. Сайты, боты, автоматизация, интеграции с ИИ.</p>
+      <div class="contact-links">
+        <a class="btn btn-primary" href="https://github.com/ii-perehod" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn btn-outline" href="mailto:">Написать</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="container">
+    ii-perehod · 2026
+  </div>
+</footer>
+
+</body>
+</html>
