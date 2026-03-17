@@ -167,6 +167,39 @@
     .card-wide { grid-template-columns: 1fr; }
   }
 
+  /* Screenshot in card */
+  .card-screen {
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0 -24px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .card-screen img {
+    width: 100%;
+    display: block;
+    max-height: 220px;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  .card-screen-phone {
+    display: flex;
+    justify-content: center;
+    background: rgba(0,0,0,0.2);
+    padding: 12px 0 0;
+    margin: 0 -24px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .card-screen-phone img {
+    height: 200px;
+    width: auto;
+    border-radius: 10px 10px 0 0;
+    display: block;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+  }
+
   /* Contact */
   .contact {
     background: var(--card);
@@ -398,9 +431,12 @@
     <div class="grid">
 
       <div class="card">
+        <div class="card-screen-phone">
+          <img src="screens/olga.jpg" alt="Бот записи к парикмахеру" onerror="this.parentElement.style.display='none'">
+        </div>
         <div class="card-icon">💇</div>
         <h3>Бот записи к парикмахеру</h3>
-        <p>Онлайн-запись через Telegram. Выбор услуги, даты и времени. Подтверждение, уведомления мастеру. Docker + Amvera.</p>
+        <p>Онлайн-запись через Telegram. Выбор услуги, даты и времени. Подтверждение мастеру, выгрузка записей в CSV. Docker + Amvera.</p>
         <div class="card-tags">
           <span class="tag tag-purple">Python</span>
           <span class="tag tag-blue">python-telegram-bot</span>
@@ -410,9 +446,12 @@
       </div>
 
       <div class="card">
+        <div class="card-screen-phone">
+          <img src="screens/napomni.jpg" alt="Бот-напоминалка" onerror="this.parentElement.style.display='none'">
+        </div>
         <div class="card-icon">🎙️</div>
         <h3>Бот-напоминалка с голосом</h3>
-        <p>Отправь голосовое — бот распознает речь (Vosk, офлайн), создаст задачу и напомнит вовремя. Без API-ключей.</p>
+        <p>Голосовое → распознавание речи (Vosk, офлайн) → напоминание. Календарь задач, расписание занятий, утренний дайджест. Без API-ключей.</p>
         <div class="card-tags">
           <span class="tag tag-purple">Python</span>
           <span class="tag tag-blue">Vosk / ffmpeg</span>
@@ -422,6 +461,9 @@
       </div>
 
       <div class="card">
+        <div class="card-screen-phone">
+          <img src="screens/scout.jpg" alt="Бот-скаут" onerror="this.parentElement.style.display='none'">
+        </div>
         <div class="card-icon">🔍</div>
         <h3>Бот-скаут новостей</h3>
         <p>Автоматический мониторинг Telegram-каналов по ключевым словам. GitHub Actions (2 раза в день), результаты в Telegram.</p>
